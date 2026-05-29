@@ -1,0 +1,9 @@
+.env
+config/voice_guide.txt
+db/queue.db
+logs/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store

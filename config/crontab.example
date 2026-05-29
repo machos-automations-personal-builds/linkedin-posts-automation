@@ -1,0 +1,20 @@
+# Macho's Content Engine - Cron Schedule
+# All times are in America/Chicago (CT). DST is handled automatically.
+#
+# To install: run `crontab -e` and paste these lines.
+# Replace /path/to/machos-content-engine with your actual repo path.
+# Replace /path/to/venv with your actual virtual environment path.
+
+TZ=America/Chicago
+
+# Weekly research scan — Sunday at 6:00am CT
+0 6 * * 0 /path/to/venv/bin/python /path/to/machos-content-engine/research/scanner.py >> /path/to/machos-content-engine/logs/scanner.log 2>&1
+
+# Draft generation — Monday and Thursday at 8:00am CT
+0 8 * * 1,4 /path/to/venv/bin/python /path/to/machos-content-engine/generator/draft.py >> /path/to/machos-content-engine/logs/draft.log 2>&1
+
+# Post scheduler — every 30 minutes
+*/30 * * * * /path/to/venv/bin/python /path/to/machos-content-engine/scheduler/poster.py >> /path/to/machos-content-engine/logs/poster.log 2>&1
+
+# Daily health check — 7:00am CT
+0 7 * * * /path/to/venv/bin/python /path/to/machos-content-engine/scripts/health_check.py >> /path/to/machos-content-engine/logs/health.log 2>&1

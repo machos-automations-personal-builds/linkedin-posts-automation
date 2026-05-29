@@ -1,0 +1,12 @@
+# API Clients
+anthropic==0.21.3
+openai==1.14.0
+requests==2.31.0
+
+# Utilities
+python-dotenv==1.0.1
+pytz==2024.1
+tzdata==2024.1
+
+# Database
+# sqlite3 is included in Python standard library
