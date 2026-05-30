@@ -83,9 +83,20 @@ def generate_both_variations(system_prompt: str) -> tuple[str, str]:
     raise last_error or LLMError("Draft generation failed")
 
 
-def main() -> int:
+def select_topic_by_id(conn, topic_id: int):
+    return conn.execute(
+        """
+        SELECT id, text, source, source_url, source_summary
+        FROM topics
+        WHERE id = ? AND status = 'pending'
+        """,
+        (topic_id,),
+    ).fetchone()
+
+
+def main(topic_id: int | None = None) -> int:
     conn = get_connection()
-    topic = select_next_topic(conn)
+    topic = select_topic_by_id(conn, topic_id) if topic_id else select_next_topic(conn)
 
     if not topic:
         notify("Content queue is empty. Add topics to continue.")
@@ -125,4 +136,8 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--topic-id", type=int, default=None)
+    args = parser.parse_args()
+    sys.exit(main(topic_id=args.topic_id))
