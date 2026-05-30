@@ -1,0 +1,5 @@
+# Subreddit names without r/ prefix (one per line)
+entrepreneur
+smallbusiness
+automation
+artificial

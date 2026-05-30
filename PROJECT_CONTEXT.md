@@ -76,6 +76,6 @@ Until the voice guide exists, the draft generator should not be considered produ
 
 ## Current Status
 
-This repository contains the full specification (`BUILD_BRIEF.md`), the database initialization script, the environment variable template, the cron schedule template, and the project structure. The four core scripts (`scanner.py`, `draft.py`, `poster.py`, `health_check.py`) and the utility module (`utils/notify.py`) need to be implemented.
+This repository contains the full specification (`BUILD_BRIEF.md`), database tooling, research scanner, draft generator, poster, health check, and shared utilities. Configure `.env`, `config/voice_guide.txt`, and cron on the server before going live.
 
-The UI is in a separate repository (`machos-hub-ui`) and is partially scaffolded. The Flask routes for draft review and topic queue management need to be implemented.
+The UI is in a separate repository (`machos-hub-ui`) with queue and review flows implemented.

@@ -62,7 +62,7 @@ The UI lives in a separate repository (`machos-hub-ui`) and connects to this sys
 | source | TEXT NOT NULL | "manual" or the name of the research source |
 | source_url | TEXT | Link to the source article or post (suggested topics only) |
 | source_summary | TEXT | Brief summary of the source (suggested topics only) |
-| status | TEXT NOT NULL | pending / drafted / approved / scheduled / posted / skipped |
+| status | TEXT NOT NULL | suggested / pending / drafted / scheduled / posted / skipped |
 | created_at | DATETIME DEFAULT CURRENT_TIMESTAMP | |
 | updated_at | DATETIME DEFAULT CURRENT_TIMESTAMP | Updated on every status change |
 | sort_order | INTEGER DEFAULT 0 | For manual reordering in the UI |
@@ -113,7 +113,7 @@ The UI lives in a separate repository (`machos-hub-ui`) and connects to this sys
 1. Pull raw items from each source.
 2. Score each item: count keyword matches in title + summary. Minimum score of 1 to pass.
 3. Deduplicate: skip if `source_url` already exists in the topics table, or if text similarity to an existing topic exceeds 80% (use simple token overlap, not embeddings).
-4. Insert passing items into `topics` with `status = 'pending'` and `source` set to the source name.
+4. Insert passing items into `topics` with `status = 'suggested'` and `source` set to the source name. The owner accepts suggestions in the UI to move them to `pending` before drafting.
 5. Log the number of items inserted per source.
 6. On individual source failure: log the error, continue with remaining sources.
 7. On all sources failing: send a Mattermost alert.

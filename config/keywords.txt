@@ -1,0 +1,9 @@
+# Keyword phrases for scoring and filtering (one per line)
+AI automation
+small business operations
+entrepreneur
+business systems
+fragmented tools
+workflow automation
+AI tools for business
+operational efficiency

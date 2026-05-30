@@ -1,0 +1,3 @@
+# Newsletter RSS feed URLs (one per line). Add feeds as you discover them.
+# Example:
+# https://example.com/feed.xml

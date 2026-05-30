@@ -1,0 +1,5 @@
+# Research sources to run (one per line). Comment out or remove to disable.
+google_news
+reddit
+hacker_news
+newsletter_rss

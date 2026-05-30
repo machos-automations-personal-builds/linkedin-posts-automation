@@ -1,6 +1,8 @@
 .env
 config/voice_guide.txt
 db/queue.db
+db/*.db-shm
+db/*.db-wal
 logs/
 venv/
 __pycache__/
