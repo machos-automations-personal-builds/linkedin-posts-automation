@@ -27,8 +27,8 @@ def check_database() -> str | None:
 
 
 def check_env() -> str | None:
-    if not os.environ.get("DB_PATH", "").strip() and not get_db_path():
-        return "DB_PATH not configured"
+    if not get_db_path().exists():
+        return f"database file missing at {get_db_path()}"
     if not os.environ.get("MATTERMOST_WEBHOOK_URL", "").strip():
         return "MATTERMOST_WEBHOOK_URL not set"
     return None
