@@ -1,6 +1,6 @@
 # Macho's Content Engine (Backend)
 
-This is the backend repository for the Macho's Automations Content Engine. It handles the automated research, draft generation, and scheduling of LinkedIn posts.
+Backend for the LinkedIn Content Engine: research, LLM drafts, scheduling, and posting. **Authoritative spec:** [BUILD_BRIEF.md](BUILD_BRIEF.md) — keep it updated when code changes.
 
 ## Architecture
 

@@ -1,6 +1,6 @@
 # Project Context: Macho's Content Engine
 
-This document gives the AI assistant building this system the full context it needs to make good decisions. Read this before reading the `BUILD_BRIEF.md`.
+This document gives background and intent for the Content Engine. **Behavioral and structural spec:** see `BUILD_BRIEF.md` (must stay aligned with the code when anything changes).
 
 ---
 
@@ -76,6 +76,12 @@ Until the voice guide exists, the draft generator should not be considered produ
 
 ## Current Status
 
-This repository contains the full specification (`BUILD_BRIEF.md`), database tooling, research scanner, draft generator, poster, health check, and shared utilities. Configure `.env`, `config/voice_guide.txt`, and cron on the server before going live.
+Implemented in GitHub org `machos-automations-personal-builds`:
+- **linkedin-posts-automation** — scanner, draft LLM, poster, health check, SQLite, tests
+- **machos-hub-ui** — queue, review, scheduling on approve
 
-The UI is in a separate repository (`machos-hub-ui`) with queue and review flows implemented.
+Server setup still required: `.env`, `config/voice_guide.txt`, cron, persistent UI process.
+
+## Spec maintenance
+
+When changing code, update **`BUILD_BRIEF.md`** in the same PR/commit so the spec always describes what is deployed. Plans may diverge from the original brief; the brief documents the **current** system.
