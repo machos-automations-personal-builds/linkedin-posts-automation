@@ -76,11 +76,24 @@ Until the voice guide exists, the draft generator should not be considered produ
 
 ## Current Status
 
-Implemented in GitHub org `machos-automations-personal-builds`:
-- **linkedin-posts-automation** — scanner, draft LLM, poster, health check, SQLite, tests
-- **machos-hub-ui** — queue, review, scheduling on approve
+Deployed and running on a Hetzner CX23 server (Ubuntu 22.04) behind Tailscale. The full pipeline is connected end to end.
 
-Server setup still required: `.env`, `config/voice_guide.txt`, cron, persistent UI process.
+**All systems operational:**
+- Server, Python environments, database, cron jobs, voice guide configured.
+- Mattermost notifications working.
+- Research scanner working (Google News + Hacker News). Reddit removed — blocked at Hetzner IP.
+- Draft generator working (OpenAI 2.40.0). Voice guide calibrated to owner's writing style.
+- LinkedIn Developer App configured — "Share on LinkedIn" + "Sign In with LinkedIn using OpenID Connect" products approved. Access token and person URN stored in backend `.env`. Health check confirms valid connection.
+- Post scheduler wired and tested in staging mode. Approved posts log to `logs/staging_posts.log`.
+- UI running at `http://100.82.137.57:5000` (Tailscale only). Tabs: Review, Scheduled, Queue, Settings. Health banner reflects live system state on every page load.
+
+**Current mode:** Staging (`PRODUCTION_MODE=false`). Posts are logged, not sent to LinkedIn.
+
+**To go live:** Set `PRODUCTION_MODE=true` in backend `.env` and redeploy. Validate one post end to end before leaving it running.
+
+**LinkedIn token expiry:** Tokens expire every ~60 days. When the Review tab shows "LinkedIn token expired", re-run `get-linkedin-token.py` on your Mac and redeploy the backend `.env`.
+
+Server access and operational procedures documented in `OPS.md` (local only, not committed).
 
 ## Spec maintenance
 
