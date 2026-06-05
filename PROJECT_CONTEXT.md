@@ -6,9 +6,9 @@ This document gives background and intent for the Content Engine. **Behavioral a
 
 ## Who This Is For
 
-This system is built for Jon Camacho, who operates under the personal brand "Macho." Jon is building a consulting business that helps small and medium-sized businesses replace fragmented tools and manual processes with custom operational systems built using AI-assisted development.
+This system is built for Jon Camacho, who operates under the personal brand "Macho." Jon is early in building a career around AI-assisted development and custom operational systems for small and solo businesses. He just landed his first real contract and is doing spec work for friends to build his portfolio. He is not an established consultant — he is learning fast, building in public, and earning his credibility through real work.
 
-Jon is not a full-time content creator. He has deep technical and operational expertise but limited interest in spending time on social media. The entire purpose of this system is to make consistent, high-quality LinkedIn presence achievable without requiring Jon to actively manage it day to day.
+Jon is not a full-time content creator. He has no interest in spending time on social media. The entire purpose of this system is to make consistent, authentic LinkedIn presence achievable without requiring him to actively manage it day to day.
 
 ---
 
@@ -47,6 +47,24 @@ A self-hosted, Python-based automation pipeline with four components:
 ## Relationship to the Broader Hub
 
 This content engine is the first component of a larger personal operational hub Jon is building for himself. The UI repository (`machos-hub-ui`) is intentionally separate because it will eventually expand to include other tools — client management, project tracking, outreach management, and more. The content engine backend is one service that feeds into that hub. It should be built as a clean, self-contained service that does one thing well.
+
+The hub infrastructure runs on a single Hetzner server behind Tailscale, with Mattermost (at chat.joncamacho.com) as the command layer. The long-term vision includes Mattermost slash commands that trigger hub actions — `/draft "topic"`, `/queue`, `/scheduled` — so Jon can operate the entire content pipeline without opening a browser.
+
+---
+
+## Business Context and Vision
+
+This system is the proof of concept for the broader business Jon is building. The thesis:
+
+> Most small businesses are drowning in fragmented tools and manual processes. The technology that used to be locked inside large corporations is now available to anyone who knows how to build with it. Jon wants to be the person who hands that to them.
+
+**What he builds for clients:** Custom operational systems — not off-the-shelf SaaS, not generic apps. Every client gets something built specifically for how their business actually works. He has mapped out detailed system specs for service businesses including lawn care, pest control, and hair salons. The pattern across all of them: scheduling that manages itself, customers that never fall through the cracks, invoices that send themselves, and a reputation engine that builds their Google presence automatically.
+
+**The pricing model:** Two tiers — a one-time build ($3,500) with a 60-day support window and self-hosted handoff, or a low startup cost ($500) plus a monthly growth fee ($149/month) that delivers continuous automated value: seasonal campaigns, lapse re-engagement, review generation, GEO content updates. The monthly isn't a maintenance tax — it's a system that keeps producing results.
+
+**GEO (Generative Engine Optimization):** Every client system includes an AI-readable website with structured schema markup, location-specific content pages, and a review engine — so when someone asks an AI tool "who does lawn care in [town]", that client gets cited. This is Jon's differentiator against anyone just selling software.
+
+**The business philosophy:** AI lowered the barrier to building software. It did not eliminate the need for someone who understands how to structure a real system. There is a real difference between vibe-coding a pretty app and building something that holds up. Jon's LinkedIn presence is how he establishes that distinction publicly over time.
 
 ---
 
