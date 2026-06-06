@@ -31,7 +31,7 @@ RETRY_DELAY_SECONDS = 60
 def select_next_topic(conn):
     return conn.execute(
         """
-        SELECT id, text, source, source_url, source_summary
+        SELECT id, text, source, source_url, source_summary, user_notes
         FROM topics
         WHERE status = 'pending'
         ORDER BY sort_order ASC, created_at ASC
@@ -56,7 +56,14 @@ def build_system_prompt(voice_guide: str, topic_row) -> str:
     if topic_row["source_summary"]:
         parts.append(f"Context: {topic_row['source_summary']}")
     if topic_row["source_url"]:
-        parts.append(f"Source URL: {topic_row['source_url']}")
+        parts.append(
+            f"Source URL: {topic_row['source_url']}\n"
+            "If you reference this content in the post, embed the URL directly in the post body "
+            "(bare URL, not markdown — LinkedIn does not render markdown links)."
+        )
+    user_notes = topic_row["user_notes"] or ""
+    if user_notes:
+        parts.append(f"Direction from the author: {user_notes}")
     return "\n\n".join(parts)
 
 
@@ -86,7 +93,7 @@ def generate_both_variations(system_prompt: str) -> tuple[str, str]:
 def select_topic_by_id(conn, topic_id: int):
     return conn.execute(
         """
-        SELECT id, text, source, source_url, source_summary
+        SELECT id, text, source, source_url, source_summary, user_notes
         FROM topics
         WHERE id = ? AND status = 'pending'
         """,
