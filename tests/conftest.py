@@ -23,7 +23,8 @@ def db_conn(tmp_path, monkeypatch):
             status TEXT NOT NULL,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            sort_order INTEGER DEFAULT 0
+            sort_order INTEGER DEFAULT 0,
+            user_notes TEXT DEFAULT ''
         );
         CREATE TABLE drafts (
             id INTEGER PRIMARY KEY AUTOINCREMENT,

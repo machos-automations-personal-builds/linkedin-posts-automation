@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 from utils.config_loaders import load_line_config
@@ -74,6 +75,10 @@ ANTHROPIC_MODEL = "claude-3-5-sonnet-20241022"
 OPENAI_MODEL = "gpt-4o"
 TEMPERATURE_VARIATION_1 = 0.7
 TEMPERATURE_VARIATION_2 = 0.85
+TEMPERATURE_VARIATION_3 = 0.6
+VOICE_UPDATE_TEMPERATURE = 0.4
+
+BLOG_PROMO_VARIATION_COUNT = int(os.environ.get("BLOG_PROMO_VARIATION_COUNT", "3"))
 
 TIMEZONE = "America/Chicago"
 POSTING_DAYS = (1, 3)  # Tuesday=1, Thursday=3 (weekday())
@@ -92,4 +97,27 @@ LINKEDIN_POST_INSTRUCTIONS = """You are writing a LinkedIn post on behalf of the
 - Maximum length: 1,500 characters. Ideal length: 800–1,200 characters.
 - End with a thought, question, or observation — not a call to action.
 - The post must stand alone as a complete thought. It is not a teaser.
+"""
+
+BLOG_PROMO_INSTRUCTIONS = """You are writing a LinkedIn post on behalf of the account owner to promote a blog post they just published. Follow these rules without exception:
+
+- Write in first person.
+- Sound like a real person, not a brand or a marketer.
+- This post must PROMOTE and LINK TO the blog post — it must NOT copy, summarize, or rehash the blog post's content. Treat the blog post as something the reader has not seen yet.
+- Take a different angle than a simple summary: a personal anecdote that led to writing it, a provocative question, a strong opinion or hook related to the topic, or a behind-the-scenes thought — anything that makes someone want to click through and read it.
+- Do not use phrases like "I'm excited to share", "In today's fast-paced world", "Game-changer", "Check out my latest blog post", or any corporate filler.
+- Do not use excessive hashtags. Maximum 2 hashtags per post, only if they are genuinely relevant.
+- Do not use bullet-point listicles unless the topic specifically calls for a list format.
+- Include the bare post URL on its own line somewhere in the post (do not wrap it in markdown link syntax).
+- Ideal length: 600–1,000 characters, including the URL.
+- The post should make sense as a standalone thought that happens to point to further reading — not a teaser fragment.
+"""
+
+VOICE_UPDATE_INSTRUCTIONS = """You maintain a writing-voice guide used to calibrate AI-generated LinkedIn posts to sound like the account owner.
+
+You will be given the CURRENT voice guide and a NEW blog post the owner just wrote. Update the guide to incorporate new observations from the blog post: tone, recurring phrases or themes, sentence rhythm, perspective, and anything else distinctive about how the owner writes.
+
+Preserve existing accurate guidance — refine and extend it, don't discard it. Only change or remove parts of the existing guide if the new post clearly contradicts them.
+
+Output ONLY the complete updated guide text, with no preamble, commentary, or markdown code fences.
 """

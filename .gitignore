@@ -1,5 +1,6 @@
 .env
 config/voice_guide.txt
+config/voice_guide_history/
 db/queue.db
 db/*.db-shm
 db/*.db-wal

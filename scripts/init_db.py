@@ -26,7 +26,8 @@ def init_db():
         status TEXT NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        sort_order INTEGER DEFAULT 0
+        sort_order INTEGER DEFAULT 0,
+        user_notes TEXT DEFAULT ''
     )
     """
     )
@@ -56,6 +57,14 @@ def init_db():
     if "failure_count" not in columns:
         cursor.execute(
             "ALTER TABLE drafts ADD COLUMN failure_count INTEGER DEFAULT 0"
+        )
+
+    # Migration for existing DBs without user_notes
+    cursor.execute("PRAGMA table_info(topics)")
+    columns = {row[1] for row in cursor.fetchall()}
+    if "user_notes" not in columns:
+        cursor.execute(
+            "ALTER TABLE topics ADD COLUMN user_notes TEXT DEFAULT ''"
         )
 
     conn.commit()
