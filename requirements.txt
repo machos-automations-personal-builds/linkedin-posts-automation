@@ -1,6 +1,6 @@
 # API Clients
 anthropic==0.21.3
-openai==1.14.0
+openai==2.40.0
 requests==2.31.0
 feedparser==6.0.11
 
